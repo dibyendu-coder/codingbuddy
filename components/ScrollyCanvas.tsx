@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useScroll, useTransform, useMotionValueEvent } from "framer-motion";
+import { useScroll, useMotionValueEvent } from "framer-motion";
 
 export default function ScrollyCanvas() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -19,12 +19,12 @@ export default function ScrollyCanvas() {
             const imagePromises: Promise<void>[] = [];
 
             for (let i = 0; i < frameCount; i++) {
-                const promise = new Promise<void>((resolve, reject) => {
+                const promise = new Promise<void>((resolve) => {
                     const img = new Image();
-                    // Construct filename: frame_000_delay-0.067s.webp
+                    // Construct filename: frame_000.png
                     // Need to pad index with zeros
                     const paddedIndex = i.toString().padStart(3, "0");
-                    img.src = `/frames/frame_${paddedIndex}_delay-0.067s.webp`;
+                    img.src = `/frames/frame_${paddedIndex}.png`;
                     img.onload = () => {
                         loadedImages[i] = img;
                         resolve();
