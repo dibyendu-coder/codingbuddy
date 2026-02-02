@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BackgroundPathsOverlay } from "@/components/ui/background-paths";
 
 interface Tool {
     name: string;
@@ -26,55 +27,16 @@ const tools: Tool[] = [
 export default function Projects() {
     return (
         <section className="min-h-screen bg-gradient-to-b from-[#0a0a0f] via-[#0f0a1a] to-[#0a0a0f] py-12 sm:py-16 md:py-24 px-4 sm:px-6 lg:px-8 text-white relative overflow-hidden">
-            {/* Animated mesh gradient background */}
+            {/* Base mesh gradients */}
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-purple-900/20 via-transparent to-transparent" />
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-cyan-900/20 via-transparent to-transparent" />
-            
-            {/* Animated gradient orbs */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                {/* Large purple orb - top left */}
-                <div className="absolute -top-40 -left-40 w-96 h-96 bg-purple-500/30 rounded-full blur-3xl animate-pulse-slow" />
-                <div className="absolute top-20 left-10 w-72 h-72 bg-purple-600/20 rounded-full blur-3xl animate-float-slow" />
-                
-                {/* Large cyan orb - bottom right */}
-                <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-cyan-500/30 rounded-full blur-3xl animate-pulse-slow-delayed" />
-                <div className="absolute bottom-20 right-10 w-72 h-72 bg-cyan-600/20 rounded-full blur-3xl animate-float-slow-reverse" />
-                
-                {/* Medium orbs */}
-                <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-purple-400/15 rounded-full blur-3xl animate-float-medium" />
-                <div className="absolute bottom-1/3 left-1/4 w-64 h-64 bg-cyan-400/15 rounded-full blur-3xl animate-float-medium-reverse" />
-                
-                {/* Small accent orbs */}
-                <div className="absolute top-1/2 left-1/3 w-48 h-48 bg-purple-300/10 rounded-full blur-2xl animate-float-fast" />
-                <div className="absolute bottom-1/4 right-1/3 w-48 h-48 bg-cyan-300/10 rounded-full blur-2xl animate-float-fast-reverse" />
-            </div>
-            
-            {/* Animated grid pattern overlay */}
-            <div 
-                className="absolute inset-0 opacity-[0.03] pointer-events-none"
-                style={{
-                    backgroundImage: `
-                        linear-gradient(rgba(139, 92, 246, 0.1) 1px, transparent 1px),
-                        linear-gradient(90deg, rgba(139, 92, 246, 0.1) 1px, transparent 1px)
-                    `,
-                    backgroundSize: '50px 50px',
-                    animation: 'grid-move 20s linear infinite'
-                }}
-            />
-            
-            {/* Radial gradient overlays for depth */}
-            <div 
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                    background: 'radial-gradient(circle at 20% 30%, rgba(139, 92, 246, 0.05) 0%, transparent 50%)'
-                }}
-            />
-            <div 
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                    background: 'radial-gradient(circle at 80% 70%, rgba(6, 182, 212, 0.05) 0%, transparent 50%)'
-                }}
-            />
+
+            {/* BackgroundPaths animated lines (3D vibe) */}
+            <BackgroundPathsOverlay className="opacity-60 [mask-image:radial-gradient(circle_at_center,black_0%,black_45%,transparent_70%)]" />
+
+            {/* Soft glows for depth */}
+            <div className="pointer-events-none absolute -top-40 -left-40 h-[32rem] w-[32rem] rounded-full bg-purple-500/20 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-40 -right-40 h-[32rem] w-[32rem] rounded-full bg-cyan-500/20 blur-3xl" />
             
             <div className="max-w-7xl mx-auto relative z-10">
                 <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 sm:mb-12 md:mb-16 text-center tracking-tight bg-gradient-to-r from-white via-purple-200 to-cyan-200 bg-clip-text text-transparent px-4">
