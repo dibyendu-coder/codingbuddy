@@ -3,7 +3,13 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 
-function FloatingPaths({ position }: { position: number }) {
+function FloatingPaths({
+  position,
+  className = "",
+}: {
+  position: number;
+  className?: string;
+}) {
   const paths = Array.from({ length: 36 }, (_, i) => ({
     id: i,
     d: `M-${380 - i * 5 * position} -${189 + i * 6}C-${
@@ -19,7 +25,7 @@ function FloatingPaths({ position }: { position: number }) {
 
   return (
     <div className="absolute inset-0 pointer-events-none">
-      <svg className="w-full h-full text-slate-950 dark:text-white" viewBox="0 0 696 316" fill="none">
+      <svg className={`w-full h-full ${className}`} viewBox="0 0 696 316" fill="none">
         <title>Background Paths</title>
         {paths.map((path) => (
           <motion.path
@@ -52,8 +58,8 @@ export function BackgroundPaths({ title = "Background Paths" }: { title?: string
   return (
     <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-white dark:bg-neutral-950">
       <div className="absolute inset-0">
-        <FloatingPaths position={1} />
-        <FloatingPaths position={-1} />
+        <FloatingPaths position={1} className="text-slate-950 dark:text-white" />
+        <FloatingPaths position={-1} className="text-slate-950 dark:text-white" />
       </div>
 
       <div className="relative z-10 container mx-auto px-4 md:px-6 text-center">

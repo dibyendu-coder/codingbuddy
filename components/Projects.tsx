@@ -32,7 +32,8 @@ export default function Projects() {
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-cyan-900/20 via-transparent to-transparent" />
 
             {/* BackgroundPaths animated lines (3D vibe) */}
-            <BackgroundPathsOverlay className="opacity-60 [mask-image:radial-gradient(circle_at_center,black_0%,black_45%,transparent_70%)]" />
+            <BackgroundPathsOverlay className="text-purple-200/40 opacity-70 blur-[0.2px] mix-blend-screen [mask-image:radial-gradient(circle_at_center,black_0%,black_45%,transparent_70%)]" />
+            <BackgroundPathsOverlay className="text-cyan-200/30 opacity-60 blur-[0.4px] mix-blend-screen [mask-image:radial-gradient(circle_at_center,black_0%,black_45%,transparent_70%)]" />
 
             {/* Soft glows for depth */}
             <div className="pointer-events-none absolute -top-40 -left-40 h-[32rem] w-[32rem] rounded-full bg-purple-500/20 blur-3xl" />
