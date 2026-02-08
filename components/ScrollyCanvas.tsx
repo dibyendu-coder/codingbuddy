@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { useScroll, useMotionValueEvent } from "framer-motion";
 
 export default function ScrollyCanvas() {
@@ -52,7 +52,7 @@ export default function ScrollyCanvas() {
         offset: ["start start", "end end"],
     });
 
-    const renderFrame = (index: number) => {
+    const renderFrame = useCallback((index: number) => {
         const canvas = canvasRef.current;
         if (!canvas || !images[index]) return;
 
@@ -84,7 +84,7 @@ export default function ScrollyCanvas() {
 
         ctx.clearRect(0, 0, displayWidth, displayHeight);
         ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
-    };
+    }, [images]);
 
     // Throttle frame updates on mobile for better performance
     const lastFrameTime = useRef(0);
@@ -117,7 +117,7 @@ export default function ScrollyCanvas() {
         if (isLoaded && images.length > 0) {
             renderFrame(0);
         }
-    }, [isLoaded, images]);
+    }, [isLoaded, images, renderFrame]);
 
     // Handle window resize for mobile orientation changes
     useEffect(() => {
@@ -138,7 +138,7 @@ export default function ScrollyCanvas() {
             window.removeEventListener("resize", handleResize);
             window.removeEventListener("orientationchange", handleResize);
         };
-    }, [isLoaded, images]);
+    }, [isLoaded, images, renderFrame]);
 
     return (
         <div ref={containerRef} className="relative h-[400vh] sm:h-[450vh] md:h-[500vh] bg-[#121212]">
